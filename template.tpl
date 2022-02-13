@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -11,7 +11,7 @@ ___INFO___
 {
   "type": "TAG",
   "id": "cvt_temp_public_id",
-  "version": 1,
+  "version": 1.01,
   "securityGroups": [],
   "displayName": "Mautic Tracking (with User Consent)",
   "categories": [
@@ -89,15 +89,20 @@ const getCookieValues = require('getCookieValues');
 
 let isTagLoaded = false;
 if( data.consent_type == undefined ) {
+  //if the tag was not associated with a consent type, inject the script without additional checks
   loadTag( data.gtmOnSuccess ,  data.gtmOnFailure );
 } else if( isConsentGranted(data.consent_type) ) {
+  //if there the tag was associated with a consent type and the consent is granted, inject the script
   loadTag( data.gtmOnSuccess ,  data.gtmOnFailure );
 } else {
+  //if there the tag was associated with a consent type and but the consent is not granted, listen to consent changes to verify when the script should load
   addConsentListener( data.consent_type, (consentType, granted) => {
      if (!isTagLoaded && consentType === data.consent_type && granted) {
         loadTag();    
       }    
   });
+  //notify google the tag was loaded successfully without injecting the main script (due to no consent)
+  data.gtmOnSuccess();
 }
 
 function loadTag(success, failure) {
@@ -656,13 +661,14 @@ scenarios:
     assertApi('injectScript').wasCalledWith("https://tags.suagencia.online/mtc-2.1.js", success, failure, mockData.domain);
     assertApi('gtmOnSuccess').wasCalled();
 - name: without consent management
-  code: "const mockData2 = {\n  domain:\"https://mkt.solutta.com\"  \n};\n\n// Call\
-    \ runCode to run the template's code.\nrunCode(mockData2);\n\n// Verify that the\
-    \ tag finished successfully.\nassertApi('injectScript').wasCalledWith(\"https://tags.suagencia.online/mtc-2.1.js\"\
-    , success, failure, mockData.domain);\nassertApi('gtmOnSuccess').wasCalled();"
+  code: "const mockData2 = {\n  domain:\"https://mautic.seuimpresso.com\"  \n};\n\n\
+    // Call runCode to run the template's code.\nrunCode(mockData2);\n\n// Verify\
+    \ that the tag finished successfully.\nassertApi('injectScript').wasCalledWith(\"\
+    https://tags.suagencia.online/mtc-2.1.js\", success, failure, mockData2.domain);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
 setup: |-
   const mockData = {
-    domain:"https://mkt.solutta.com",
+    domain:"https://mautic.seuimpresso.com",
     consent_type:"personalization_storage"
     // Mocked field values
   };
