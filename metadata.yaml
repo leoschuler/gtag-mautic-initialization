@@ -15,5 +15,7 @@
 homepage: "https://github.com/leoschuler/gtag-mautic-initialization"
 documentation: "https://github.com/leoschuler/gtag-mautic-initialization"
 versions:
+  - sha: 5f19a104b8f89f2c7a243327f77ad62a6e50ac5c
+    changeNotes: v1.01 - minor fixes
   - sha: 95441d86439a549e544f169093a6784ddfe9d1b5
     changeNotes: Initial Version
