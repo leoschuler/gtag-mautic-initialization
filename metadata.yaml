@@ -13,7 +13,6 @@
 # limitations under the License.
 
 homepage: "https://github.com/leoschuler/gtag-mautic-initialization"
-documentation: "https://github.com/leoschuler/gtag-mautic-initialization"
 versions:
   - sha: 5f19a104b8f89f2c7a243327f77ad62a6e50ac5c
     changeNotes: v1.01 - minor fixes
