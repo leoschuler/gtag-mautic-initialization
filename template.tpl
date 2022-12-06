@@ -11,7 +11,7 @@ ___INFO___
 {
   "type": "TAG",
   "id": "cvt_temp_public_id",
-  "version": 1.01,
+  "version": 1.02,
   "securityGroups": [],
   "displayName": "Mautic Tracking (with User Consent)",
   "categories": [
@@ -68,7 +68,8 @@ ___TEMPLATE_PARAMETERS___
       }
     ],
     "simpleValueType": true,
-    "defaultValue": "personalization_storage"
+    "defaultValue": "personalization_storage",
+    "notSetText": "No Consent Management used"
   }
 ]
 
@@ -661,7 +662,7 @@ scenarios:
     assertApi('injectScript').wasCalledWith("https://tags.suagencia.online/mtc-2.1.js", success, failure, mockData.domain);
     assertApi('gtmOnSuccess').wasCalled();
 - name: without consent management
-  code: "const mockData2 = {\n  domain:\"https://mautic.seuimpresso.com\"  \n};\n\n\
+  code: "const mockData2 = {\n  domain:\"https://mkt.suagencia.online\"  \n};\n\n\
     // Call runCode to run the template's code.\nrunCode(mockData2);\n\n// Verify\
     \ that the tag finished successfully.\nassertApi('injectScript').wasCalledWith(\"\
     https://tags.suagencia.online/mtc-2.1.js\", success, failure, mockData2.domain);\n\
