@@ -15,5 +15,7 @@
 homepage: "https://github.com/leoschuler/gtag-mautic-initialization"
 documentation: "https://github.com/leoschuler/gtag-mautic-initialization"
 versions:
+  - sha: 1489f16ff86f16d1d67097dbf7c7bc6bb0c0d2fa
+    changeNotes: v1.02 - add no consent management option
   - sha: 95441d86439a549e544f169093a6784ddfe9d1b5
     changeNotes: Initial Version
